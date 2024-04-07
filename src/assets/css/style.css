@@ -600,3 +600,8 @@ form a {
         display: none;
     }
 }
+
+.homepage-banner {
+    margin-top: 0;
+    background: radial-gradient(#fff, #ffd6d6);
+}

@@ -1,6 +1,6 @@
-import AppStoreIcon from '../../assets/images/app-store.png';
-import PlayStoreIcon from '../../assets/images/play-store.png';
-import LogoWhite from '../../assets/images/logo-white.png';
+import AppStoreIcon from '../../assets/images/icons/app-store.png';
+import PlayStoreIcon from '../../assets/images/icons/play-store.png';
+import LogoWhite from '../../assets/images/logo/logo-white.png';
 const Footer = () => {
     return (
         <div className="footer">
