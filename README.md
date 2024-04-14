@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-To development, you need run `npm init` to install require packages in project.
+To development, you need run `npm install` to install require packages in project.
 
 In the project directory, you can run:
 
