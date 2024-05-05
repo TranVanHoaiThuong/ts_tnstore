@@ -1,13 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Category } from '../../models/category.model';
 import CategoryCard from './items/product/CategoryCard';
+import axios from 'axios';
 
 const HomePage = () => {
-    const [categories, setCategory] = useState<Category[]>([
-        { id: 1, name: "Category 1", image: "/images/product/category/category-1.jpg"},
-        { id: 2, name: "Category 3", image: "/images/product/category/category-2.jpg"},
-        { id: 3, name: "Category 3", image: "/images/product/category/category-3.jpg"},
-    ]);
+    // sample cate
+    // { id: 1, name: "Category 1", image: "/images/product/category/category-1.jpg"},
+    // { id: 2, name: "Category 2", image: "/images/product/category/category-2.jpg"},
+    // { id: 3, name: "Category 3", image: "/images/product/category/category-3.jpg"},
+
+    const [categories, setCategory] = useState<Category[]>([]);
+    // Using useEffect to call API get data
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_API_SERVER + '/user/categories/newest')
+        .then(resp => {            
+            if(resp.data.Error === true) {
+                setCategory([]);
+                return;
+            }
+            let data = resp.data.Data;
+            // if(Array.isArray(data)) {
+            //     data.map((item) => {item.image = '/images/product/category/category-1.jpg'; return item})
+            // }
+            setCategory(data);
+        });
+    }, []);
     return (
         <div className="homepage">
             <div className="row homepage-banner">
@@ -23,10 +40,10 @@ const HomePage = () => {
             </div>
             <div className="categories">
                 <div className="small-container">
-                    <h2 className="title">Latest Categories</h2>
+                    <h2 className="title">Newest Categories</h2>
                     <div className="row">
                         {
-                            categories.map(item => <CategoryCard id={item.id} name={item.name} image={item.image} />)
+                            categories.length > 0 && categories.map(item => <CategoryCard key={item.id} id={item.id} name={item.name} image={item.image}/>)
                         }
                     </div>
                 </div>
